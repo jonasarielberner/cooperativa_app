@@ -22,4 +22,6 @@ public class DatabaseModule {
     @Provides
     @Singleton
     CooperadosDao providesCooperadosDao(CooperativaDatabase database){return database.cooperadosDao();}
+
+
 }

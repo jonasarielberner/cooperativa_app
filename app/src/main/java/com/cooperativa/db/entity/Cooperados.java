@@ -24,6 +24,9 @@ public class Cooperados {
     @ColumnInfo(name = "role")
     private String role;
 
+    @ColumnInfo(name = "description")
+    private String description;
+
    /* @ColumnInfo(name = "photo")
     private MediaStore.Images.Media photo;*/
 
@@ -31,10 +34,12 @@ public class Cooperados {
                       Date creationDate,
                       String name,
                       String role,
+                      String description,
                       MediaStore.Images.Media photo) {
         this.id = id;
         this.name = name;
         this.role = role;
+        this.description = description;
     }
 
     public Long getId() {
@@ -63,6 +68,14 @@ public class Cooperados {
         this.role = role;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 
 
     @Override
@@ -71,6 +84,8 @@ public class Cooperados {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", role='" + role + '\'' +
+                ", description='" + description + '\'' +
+
                 '}';
     }
 }

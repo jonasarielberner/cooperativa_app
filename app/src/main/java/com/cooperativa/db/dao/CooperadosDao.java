@@ -24,7 +24,10 @@ public interface CooperadosDao {
     Single<Cooperados> loadCooperado(Long cooperadoId);
 
     @Query("SELECT * FROM cooperados")
-    Flowable<List<Cooperados>> loadAllIssues();
+    Single<List<Cooperados>> loadAllCooperados();
+
+    @Query("SELECT * FROM cooperados WHERE id = :cooperadoId")
+    Cooperados loadCooperadoSynchronous(Long cooperadoId);
 
     @Delete
     int deleteCooperado(Cooperados... cooperados);

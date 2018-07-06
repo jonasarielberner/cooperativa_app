@@ -2,8 +2,12 @@ package com.cooperativa.di;
 
 import com.cooperativa.model.repository.configuration.ConfigurationRepository;
 import com.cooperativa.model.repository.configuration.ConfigurationRepositoryImpl;
+import com.cooperativa.model.repository.database.CooperadoRepository;
+import com.cooperativa.model.repository.database.CooperadoRepositoryImpl;
 import com.cooperativa.model.repository.logging.LoggingRepository;
 import com.cooperativa.model.repository.logging.LoggingRepositoryImpl;
+import com.cooperativa.model.repository.version.VersionRepository;
+import com.cooperativa.model.repository.version.VersionRepositoryImpl;
 
 import javax.inject.Singleton;
 
@@ -53,6 +57,18 @@ public class RepositoryModule {
     @Provides
     @Singleton
     LoggingRepository providesLoggingRepository(LoggingRepositoryImpl repository) {
+        return repository;
+    }
+
+    @Provides
+    @Singleton
+    VersionRepository providesVersionRepository(VersionRepositoryImpl repository) {
+        return repository;
+    }
+
+    @Provides
+    @Singleton
+    CooperadoRepository providesCooperadoRepository(CooperadoRepositoryImpl repository) {
         return repository;
     }
 }

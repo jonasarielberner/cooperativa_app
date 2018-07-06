@@ -43,7 +43,7 @@ public class AboutActivity extends AppCompatActivity implements AboutContract.Vi
 
     @Override
     public void showAppVersion(String appVersion) {
-
+        versionTextView.setText(appVersion);
     }
 
     @Override
@@ -58,5 +58,14 @@ public class AboutActivity extends AppCompatActivity implements AboutContract.Vi
         super.onPause();
         CoopLog.d(TAG, "onPause: ");
         presenter.onViewPause( this );
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(android.view.MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            this.finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

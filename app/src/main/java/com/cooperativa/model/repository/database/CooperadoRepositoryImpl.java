@@ -3,6 +3,9 @@ package com.cooperativa.model.repository.database;
 import com.cooperativa.db.entity.Cooperados;
 import com.cooperativa.model.datasource.database.CooperadoDataSource;
 import com.cooperativa.model.datasource.database.LocalCooperadoDataSource;
+import com.cooperativa.presentation.cooperado.list.CooperadoSummary;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -17,12 +20,24 @@ public class CooperadoRepositoryImpl implements CooperadoRepository {
         this.localCooperadoDataSource = localCooperadoDataSource;
     }
     @Override
-    public Single<Cooperados> createNewCooperado() {
-        return null;
+    public Single<Cooperados> createNewCooperado(Cooperados cooperados) {
+        return localCooperadoDataSource.addCooperadoToDatabase(cooperados);
     }
 
     @Override
     public Completable deleteCooperado() {
         return null;
     }
+
+    @Override
+    public Single<Cooperados> getCooperadoInformation(Long cooperadoId) {
+        return localCooperadoDataSource.getCooperadoInformation( cooperadoId );
+    }
+
+    @Override
+    public Single<List<CooperadoSummary>> getCooperadosList() {
+        return localCooperadoDataSource.getCooperadosList();
+    }
+
+
 }

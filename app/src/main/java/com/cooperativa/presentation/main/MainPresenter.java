@@ -1,12 +1,15 @@
 package com.cooperativa.presentation.main;
 
+import com.cooperativa.model.datasource.logging.CoopLog;
 import com.cooperativa.widget.BasePresenter;
 
 import javax.inject.Inject;
 
 public class MainPresenter extends BasePresenter implements MainActivityContract.Presenter{
+    private static final String TAG = "MainPresenter";
 
     private MainActivityContract.View view;
+
 
     @Inject
     public MainPresenter() {
@@ -15,6 +18,7 @@ public class MainPresenter extends BasePresenter implements MainActivityContract
 
     @Override
     public void onViewResume(MainActivityContract.View view) {
+        CoopLog.d(TAG, "onViewResume: ");
         attachView(view);
     }
 
@@ -28,7 +32,9 @@ public class MainPresenter extends BasePresenter implements MainActivityContract
 
         @Override
     public void onViewPause(MainActivityContract.View view) {
-        detachView(view);
+            CoopLog.d(TAG, "onViewPause: ");
+
+            detachView(view);
         }
 
     private void detachView(MainActivityContract.View view) {

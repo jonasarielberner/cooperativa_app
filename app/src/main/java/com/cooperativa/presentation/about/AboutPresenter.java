@@ -1,21 +1,30 @@
 package com.cooperativa.presentation.about;
 
+import com.cooperativa.model.UseCaseCallback;
+import com.cooperativa.model.datasource.logging.CoopLog;
+import com.cooperativa.model.usecase.version.GetAppVersion;
 import com.cooperativa.widget.BasePresenter;
 
 import javax.inject.Inject;
 
 public class AboutPresenter extends BasePresenter implements AboutContract.Presenter {
 
+    private static final String TAG = "AboutPresenter";
+
     private AboutContract.View view;
 
     @Inject
-    public AboutPresenter(){
+    GetAppVersion getAppVersion;
 
+    @Inject
+    public AboutPresenter(GetAppVersion getAppVersion) {
+        this.getAppVersion = getAppVersion;
     }
 
     @Override
     public void onViewResume(AboutContract.View view) {
         attachView(view);
+        loadProperties();
     }
 
     private void attachView(AboutContract.View view) {
@@ -35,6 +44,29 @@ public class AboutPresenter extends BasePresenter implements AboutContract.Prese
 
     AboutContract.View getView() {
         return view;
+    }
+
+
+    private void loadProperties() {
+        loadAppVersion();
+    }
+    void loadAppVersion() {
+        CoopLog.d(TAG, "loadAppVersion: ");
+        getAppVersion.execute(new UseCaseCallback<String>() {
+            @Override
+            public void onSuccess(String data) {
+                CoopLog.d(TAG, "loadAppVersion:  onSuccess: " + data);
+                if (hasViewAttached()) {
+                    view.showAppVersion(data);
+                }
+            }
+
+            @Override
+            public void onError(Exception e) {
+                CoopLog.d(TAG, "loadAppVersion: onError: ");
+                defaultErrorHandling(TAG, e);
+            }
+        });
     }
 
 }
