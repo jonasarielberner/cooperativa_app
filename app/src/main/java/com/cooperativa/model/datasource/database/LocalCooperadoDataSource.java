@@ -1,11 +1,16 @@
 package com.cooperativa.model.datasource.database;
 
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+
 import com.cooperativa.db.dao.CooperadosDao;
 import com.cooperativa.db.entity.Cooperados;
 import com.cooperativa.model.datasource.cooperado.CooperadosMapper;
+import com.cooperativa.model.datasource.logging.CoopLog;
 import com.cooperativa.presentation.cooperado.list.CooperadoSummary;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -25,16 +30,32 @@ public class LocalCooperadoDataSource implements CooperadoDataSource {
     }
 
     @Override
-    public Single<Cooperados> addCooperadoToDatabase(Cooperados cooperado){
+    public Single<Cooperados> addCooperadoToDatabase(Cooperados cooperados){
 
         return Single.create(e -> {
             try {
+
+                Cooperados cooperado = newCooperado();
+
                 Long cooperadoId = cooperadosDao.insertCooperado(cooperado);
+
                 e.onSuccess(cooperadosDao.loadCooperadoSynchronous(cooperadoId));
+                CoopLog.d( TAG, "onResume: " + cooperadoId );
+
             } catch (Exception exp) {
                 e.onError(exp);
             }
         });
+    }
+
+    @NonNull
+    private Cooperados newCooperado() {
+
+        Cooperados newCooperado = new Cooperados("Jonas",
+                "",
+                "");
+
+        return newCooperado;
     }
 
 

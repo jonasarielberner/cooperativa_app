@@ -1,7 +1,9 @@
 package com.cooperativa.presentation.cooperado.list;
 
+import com.cooperativa.db.entity.Cooperados;
 import com.cooperativa.model.datasource.logging.CoopLog;
 import com.cooperativa.model.usecase.cooperado.GetCooperadosList;
+import com.cooperativa.model.usecase.database.AddNewCooperado;
 import com.cooperativa.widget.BasePresenter;
 
 import java.util.List;
@@ -17,9 +19,12 @@ public class ListCooperadoPresenter extends BasePresenter implements ListCoopera
 
     private GetCooperadosList getCooperadosList;
 
+    private AddNewCooperado addNewCooperado;
+
     @Inject
-    public ListCooperadoPresenter(GetCooperadosList getCooperadosList) {
+    public ListCooperadoPresenter(GetCooperadosList getCooperadosList, AddNewCooperado addNewCooperado) {
        this.getCooperadosList = getCooperadosList;
+       this.addNewCooperado = addNewCooperado;
     }
 
     private ListCooperadoContract.View view;
@@ -87,15 +92,26 @@ public class ListCooperadoPresenter extends BasePresenter implements ListCoopera
 
     public void onClickNewCooperado(){
         CoopLog.d(TAG, "onClickNewIssue: ");
-        Long cooperadoId = 0L;
-        view.showCooperadoScreen();
+        addNewCooperado.execute( new DisposableSingleObserver<Cooperados>(){
+
+            @Override
+            public void onSuccess(Cooperados cooperados) {
+                CoopLog.d(TAG, "loadIssueSummariesFirstPage: onSuccess: ");
+                view.showCooperadoScreen();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                CoopLog.e(TAG, "loadIssueSummariesFirstPage: onError: ", e);
+                defaultErrorHandling(TAG, e);
+            }
+        } );
     }
 
     @Override
     public void onViewDestroy(ListCooperadoContract.View view) {
         CoopLog.d(TAG, "onViewDestroy: ");
-
-    }
+            }
 
     ListCooperadoContract.View getView() {
         return view;

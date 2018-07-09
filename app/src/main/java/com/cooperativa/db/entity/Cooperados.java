@@ -30,13 +30,9 @@ public class Cooperados {
    /* @ColumnInfo(name = "photo")
     private MediaStore.Images.Media photo;*/
 
-    public Cooperados(Long id,
-                      Date creationDate,
-                      String name,
+    public Cooperados(String name,
                       String role,
-                      String description,
-                      MediaStore.Images.Media photo) {
-        this.id = id;
+                      String description) {
         this.name = name;
         this.role = role;
         this.description = description;

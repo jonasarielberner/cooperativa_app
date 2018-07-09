@@ -16,18 +16,15 @@ public class CooperadoPresenter extends BasePresenter implements CooperadoContra
 
     private CooperadoContract.View view;
 
-    private Long cooperadoId;
+    private Long cooperadoId;//tem que pegar a info desse cooperado clicado
 
     @Inject
     GetCooperadoInformation getCooperadoInformation;
 
-    @Inject
-    AddNewCooperado addNewCooperado;
 
     @Inject
-    public CooperadoPresenter(GetCooperadoInformation getCooperadoInformation, AddNewCooperado addNewCooperado) {
+    public CooperadoPresenter(GetCooperadoInformation getCooperadoInformation) {
         this.getCooperadoInformation = getCooperadoInformation;
-        this.addNewCooperado = addNewCooperado;
     }
 
     @Override
@@ -71,27 +68,19 @@ public class CooperadoPresenter extends BasePresenter implements CooperadoContra
     private void newCooperado( ){
         CoopLog.d(TAG, "newCooperado: ");
 
-        addNewCooperado.execute(new DisposableSingleObserver<Cooperados>() {
+        getCooperadoInformation.execute(new DisposableSingleObserver<Cooperados>() {
             @Override
             public void onSuccess(Cooperados cooperado) {
                 if ((hasViewAttached())) {
                     view.showCooperadoInformation( cooperado );
                 }
-
             }
 
             @Override
             public void onError(Throwable e) {
                 defaultErrorHandling( TAG, e );
-
             }
         } );
-
-        Cooperados cooperado = new Cooperados(  );
-        //setar um id
-        cooperado.setId( 0l );
-        cooperado.setName( "Jonas" );
-        cooperado.setRole( "Boss" );
 
     }
 
