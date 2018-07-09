@@ -1,13 +1,10 @@
 package com.cooperativa.presentation.cooperado.visualization;
 
 import android.app.DialogFragment;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,8 +13,7 @@ import com.cooperativa.CooperativaApplication;
 import com.cooperativa.R;
 import com.cooperativa.db.entity.Cooperados;
 import com.cooperativa.model.datasource.logging.CoopLog;
-import com.cooperativa.presentation.cooperado.visualization.dialog.TextViewDialog;
-import com.cooperativa.presentation.main.MainActivity;
+import com.cooperativa.presentation.cooperado.visualization.dialog.DialogCooperado;
 
 import javax.inject.Inject;
 
@@ -73,7 +69,7 @@ public class CooperadoActivity extends AppCompatActivity implements CooperadoCon
             @Override
             public void onClick(View v) {
                 CoopLog.d(TAG, "onClick: ");
-                DialogFragment newFragment = new TextViewDialog();
+                DialogFragment newFragment = new DialogCooperado();
                 newFragment.show(getFragmentManager(), "missiles");
             }
         } );

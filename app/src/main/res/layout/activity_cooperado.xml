@@ -22,18 +22,20 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:onClick="onClick"
-        android:clickable="true"/>
+        android:clickable="true"
+        android:text="Jonas"/>
 
     <TextView
         android:id="@+id/role_cooperado"
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:layout_height="50dp"
+        android:text="Programador"/>
 
     <TextView
         android:id="@+id/suporting_text_cooperado"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:text="Esse texto é uma descrição"/>
 
 
 </LinearLayout>

@@ -6,6 +6,8 @@ import com.cooperativa.presentation.cooperado.list.ListCooperadoContract;
 import com.cooperativa.presentation.cooperado.list.ListCooperadoPresenter;
 import com.cooperativa.presentation.cooperado.visualization.CooperadoContract;
 import com.cooperativa.presentation.cooperado.visualization.CooperadoPresenter;
+import com.cooperativa.presentation.cooperado.visualization.dialog.DialogContract;
+import com.cooperativa.presentation.cooperado.visualization.dialog.DialogPresenter;
 import com.cooperativa.presentation.main.MainActivityContract;
 import com.cooperativa.presentation.main.MainPresenter;
 
@@ -36,6 +38,11 @@ public class PresentationModule {
     @Provides
     @SuppressWarnings("WeakerAccess")
     public ListCooperadoContract.Presenter providesListCooperadoContract (ListCooperadoPresenter presenter){
+        return presenter;
+    }
+
+    @Provides
+    public DialogContract.Presenter providesDialogContract (DialogPresenter presenter){
         return presenter;
     }
 }

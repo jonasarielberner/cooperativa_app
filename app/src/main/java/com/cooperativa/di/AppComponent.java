@@ -5,6 +5,7 @@ import com.cooperativa.CooperativaApplication;
 import com.cooperativa.presentation.about.AboutActivity;
 import com.cooperativa.presentation.cooperado.list.ListCooperadoFragment;
 import com.cooperativa.presentation.cooperado.visualization.CooperadoActivity;
+import com.cooperativa.presentation.cooperado.visualization.dialog.DialogCooperado;
 import com.cooperativa.presentation.main.MainActivity;
 
 import javax.inject.Singleton;
@@ -28,6 +29,8 @@ public interface AppComponent {
     void inject(CooperativaApplication cooperativaApplication);
 
     void inject(ListCooperadoFragment listCooperadoFragment);
+
+    void inject(DialogCooperado dialogCooperado);
 
 
 

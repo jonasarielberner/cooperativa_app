@@ -131,8 +131,8 @@ public class CooperadoSummaryRecyclerViewAdapter extends RecyclerView.Adapter<Co
         CooperadoSummaryHolder(View view) {
             super( view );
             mView = view;
-            titleView = view.findViewById( R.id.id );
-            subtitleView = view.findViewById( R.id.content );
+            titleView = view.findViewById( R.id.text_view_cooperado_nome );
+            subtitleView = view.findViewById( R.id.text_view_cooperado_role );
         }
     }
 

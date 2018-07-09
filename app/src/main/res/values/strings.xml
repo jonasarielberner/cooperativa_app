@@ -11,6 +11,8 @@
     <string name="dialog_textview">ChangeText</string>
     <string name="accept">Accept</string>
     <string name="cancel">Cancel</string>
+    <string name="dialog_title">Set the Text</string>
+    <string name="dialog_text_input">Enter your text here</string>
 
 
 </resources>
