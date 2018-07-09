@@ -7,7 +7,7 @@ public interface ListCooperadoContract {
     interface View{
         void showEmptyListWarn();
 
-        void showCooperadoScreen();
+        void showCooperadoScreen(Long cooperadoId);
 
         void showCooperadoList(List<CooperadoSummary> cooperadoList);
 
@@ -19,7 +19,7 @@ public interface ListCooperadoContract {
 
         void onViewPause(View view);
 
-        void onClickNewCooperado();
+        void onAddNewCooperado();
 
         void onViewDestroy(View view);
 

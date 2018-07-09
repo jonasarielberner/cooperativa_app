@@ -9,12 +9,13 @@ public interface CooperadoContract {
 
         void showCooperadoInformation(Cooperados cooperado);
 
+
     }
 
     interface Presenter{
 
 
-        void onViewResume(View view);
+        void onViewResume(View view, Long cooperadoId);
 
         void onViewPause(View view);
 

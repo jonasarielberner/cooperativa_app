@@ -23,6 +23,9 @@ import butterknife.ButterKnife;
 public class CooperadoActivity extends AppCompatActivity implements CooperadoContract.View {
 
     private static final String TAG = "CooperadoActivity";
+    public static final String COOPERADO_ID = "cooperado_id";
+    private Long cooperadoId;
+
 
 
     @Inject
@@ -61,6 +64,24 @@ public class CooperadoActivity extends AppCompatActivity implements CooperadoCon
         setClickListener(roleCooperadoTextView);
         setClickListener(nomeCooperadoTextView);
 
+        interceptIntent();
+    }
+
+
+    private void interceptIntent() {
+        if (hasIssueIdExtra()) {
+            cooperadoId = getIntent().getExtras().getLong(COOPERADO_ID);
+            CoopLog.d( TAG, "interceptIntent: ok: " + cooperadoId);
+
+        } else {
+            CoopLog.d( TAG, "interceptIntent: nok: " + cooperadoId);
+        }
+    }
+
+
+
+    private boolean hasIssueIdExtra() {
+        return getIntent() != null && getIntent().hasExtra(COOPERADO_ID);
     }
 
     private void setClickListener(View view) {
@@ -79,7 +100,7 @@ public class CooperadoActivity extends AppCompatActivity implements CooperadoCon
     protected void onResume() {
         super.onResume();
         CoopLog.d(TAG, "onResume: ");
-        presenter.onViewResume( this );
+        presenter.onViewResume( this , cooperadoId);
     }
 
     @Override

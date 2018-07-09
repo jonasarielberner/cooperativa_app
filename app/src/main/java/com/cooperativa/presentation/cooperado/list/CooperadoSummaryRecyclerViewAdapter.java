@@ -19,6 +19,8 @@ public class CooperadoSummaryRecyclerViewAdapter extends RecyclerView.Adapter<Co
 
     private Listener listener;
 
+    private Long cooperadoId;
+
     public CooperadoSummaryRecyclerViewAdapter(List<CooperadoSummary> items, Listener listener) {
         mValues = items;
         this.listener = listener;
@@ -35,7 +37,7 @@ public class CooperadoSummaryRecyclerViewAdapter extends RecyclerView.Adapter<Co
 
     @Override
     public void onBindViewHolder(final CooperadoSummaryHolder holder, int position) {
-
+        CoopLog.d(TAG, "onBindViewHolder: ");
 
         CooperadoSummary cooperadoSummary = mValues.get(position);
 
@@ -47,6 +49,9 @@ public class CooperadoSummaryRecyclerViewAdapter extends RecyclerView.Adapter<Co
 
         containerView.setOnClickListener(v -> {
             if (listener != null) {
+                CoopLog.i(TAG, "onClick: " + holder.mItem);
+                cooperadoId = Long.parseLong( cooperadoSummary.getCooperadoId());
+                listener.onClickCooperado(cooperadoId);
             } else {
                 CoopLog.i(TAG, "onClick: " + holder.mItem);
             }

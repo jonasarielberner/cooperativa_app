@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,7 @@ import butterknife.OnClick;
 public class ListCooperadoFragment extends Fragment implements ListCooperadoContract.View, CooperadoSummaryRecyclerViewAdapter.Listener {
 
     private static final String TAG = "CooperadoActivity";
+    private static final int DETAIL_ACTIVITY_REQUEST = 557;
 
 
     @BindView(R.id.cooperado_recycler)
@@ -76,6 +78,9 @@ public class ListCooperadoFragment extends Fragment implements ListCooperadoCont
         adapter = new CooperadoSummaryRecyclerViewAdapter( cooperadoSummaryList, this );
         recyclerViewTickets.setAdapter( adapter );
 
+
+
+
     }
 
     @Override
@@ -100,19 +105,22 @@ public class ListCooperadoFragment extends Fragment implements ListCooperadoCont
 
     @Override
     public void onClickCooperado(Long cooperadoId) {
-        /*Intent intent = new Intent(this,CooperadoActivity.class);
-        startActivity(intent);
-        abre o cooperado ja existente*/
+        CoopLog.d(TAG, "onClickCooperado: ");
+        showCooperadoScreen(cooperadoId);
     }
 
     @OnClick(R.id.new_cooperado)
     public void onClickNewCooperado() {
-        presenter.onClickNewCooperado();
+        CoopLog.d(TAG, "onClickNewCooperado: ");
+        presenter.onAddNewCooperado();
     }
 
     @Override
-    public void showCooperadoScreen() {
+    public void showCooperadoScreen(Long cooperadoId) {
+        CoopLog.d(TAG, "showCooperadoScreen: ID: " + cooperadoId);
+
         Intent intent = new Intent(getActivity(), CooperadoActivity.class  );
+        intent.putExtra( "cooperado_id", cooperadoId );
         startActivity(intent);
     }
 
@@ -145,5 +153,7 @@ public class ListCooperadoFragment extends Fragment implements ListCooperadoCont
         recyclerViewTickets.setVisibility(View.VISIBLE);
         emptyPlaceHolderContainer.setVisibility(View.INVISIBLE);
     }
+
+
 }
 

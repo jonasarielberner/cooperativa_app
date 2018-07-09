@@ -90,14 +90,14 @@ public class ListCooperadoPresenter extends BasePresenter implements ListCoopera
         this.view = null;
     }
 
-    public void onClickNewCooperado(){
+    public void onAddNewCooperado(){
         CoopLog.d(TAG, "onClickNewIssue: ");
         addNewCooperado.execute( new DisposableSingleObserver<Cooperados>(){
 
             @Override
-            public void onSuccess(Cooperados cooperados) {
+            public void onSuccess(Cooperados cooperado) {
                 CoopLog.d(TAG, "loadIssueSummariesFirstPage: onSuccess: ");
-                view.showCooperadoScreen();
+                view.showCooperadoScreen(cooperado.getId());
             }
 
             @Override

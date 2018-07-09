@@ -28,13 +28,15 @@ public class CooperadoPresenter extends BasePresenter implements CooperadoContra
     }
 
     @Override
-    public void onViewResume(CooperadoContract.View view) {
+    public void onViewResume(CooperadoContract.View view, Long cooperadoId) {
         CoopLog.d(TAG, "onViewResume: ");
         attachView(view);
         if (cooperadoId!=null){
+            CoopLog.d(TAG, "onViewResume: ID: " + cooperadoId);
             loadCooperado(cooperadoId);
         }else{
-            newCooperado();
+            CoopLog.d(TAG, "onViewResume: no Cooperado selected " + cooperadoId);
+
         }
     }
 
@@ -65,24 +67,7 @@ public class CooperadoPresenter extends BasePresenter implements CooperadoContra
         } );
     }
 
-    private void newCooperado( ){
-        CoopLog.d(TAG, "newCooperado: ");
 
-        getCooperadoInformation.execute(new DisposableSingleObserver<Cooperados>() {
-            @Override
-            public void onSuccess(Cooperados cooperado) {
-                if ((hasViewAttached())) {
-                    view.showCooperadoInformation( cooperado );
-                }
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                defaultErrorHandling( TAG, e );
-            }
-        } );
-
-    }
 
 
     @Override
