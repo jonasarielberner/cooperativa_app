@@ -7,10 +7,5 @@
         android:orderInCategory="14"
         android:title="@string/about"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/list_cooperado"
-        android:orderInCategory="14"
-        android:title="@string/new_cooperado"
-        app:showAsAction="never" />
 
 </menu>

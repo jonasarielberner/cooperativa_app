@@ -5,8 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    style="@style/AppTheme"
-    >
+    style="@style/AppTheme">
 
     <ImageView
         android:id="@+id/image_view_cooperado"
@@ -15,7 +14,7 @@
         android:layout_height="200dp"
         android:src="@drawable/ic_launcher_background"
         android:padding="10dp"
-        />
+        android:tag="picture"/>
 
     <TextView
         android:id="@+id/nome_cooperado"
@@ -23,19 +22,22 @@
         android:layout_height="50dp"
         android:onClick="onClick"
         android:clickable="true"
-        android:text="Jonas"/>
+        android:text="Jonas"
+        android:tag="name"/>
 
     <TextView
         android:id="@+id/role_cooperado"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Programador"/>
+        android:text="Programador"
+        android:tag="role"/>
 
     <TextView
         android:id="@+id/suporting_text_cooperado"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Esse texto é uma descrição"/>
+        android:text="Esse texto é uma descrição"
+        android:tag="description"/>
 
 
 </LinearLayout>

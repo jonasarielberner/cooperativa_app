@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,13 +19,15 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class CooperadoActivity extends AppCompatActivity implements CooperadoContract.View {
+public class CooperadoActivity extends AppCompatActivity implements CooperadoContract.View, DialogCooperado.OnListFragmentInteractionListener{
 
     private static final String TAG = "CooperadoActivity";
     public static final String COOPERADO_ID = "cooperado_id";
+
+    private  String TEXT_VIEW = "text_view";
+
+
     private Long cooperadoId;
-
-
 
     @Inject
     CooperadoContract.Presenter presenter;
@@ -42,7 +43,6 @@ public class CooperadoActivity extends AppCompatActivity implements CooperadoCon
 
     @BindView(R.id.image_view_cooperado)
     ImageView cooperadoImageView;
-
 
 
 
@@ -74,32 +74,19 @@ public class CooperadoActivity extends AppCompatActivity implements CooperadoCon
             CoopLog.d( TAG, "interceptIntent: ok: " + cooperadoId);
 
         } else {
-            CoopLog.d( TAG, "interceptIntent: nok: " + cooperadoId);
+            CoopLog.d( TAG, "interceptIntent: nok: ");
         }
     }
-
-
 
     private boolean hasIssueIdExtra() {
         return getIntent() != null && getIntent().hasExtra(COOPERADO_ID);
     }
 
-    private void setClickListener(View view) {
-        CoopLog.d(TAG, "onClickListener: ");
-        view.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CoopLog.d(TAG, "onClick: ");
-                DialogFragment newFragment = new DialogCooperado();
-                newFragment.show(getFragmentManager(), "missiles");
-            }
-        } );
-    }
 
     @Override
     protected void onResume() {
         super.onResume();
-        CoopLog.d(TAG, "onResume: ");
+        CoopLog.d(TAG, "onResume: " + cooperadoId);
         presenter.onViewResume( this , cooperadoId);
     }
 
@@ -111,9 +98,10 @@ public class CooperadoActivity extends AppCompatActivity implements CooperadoCon
     }
 
     public void showCooperadoInformation(Cooperados cooperado){
+
         nomeCooperadoTextView.setText(cooperado.getName());
         roleCooperadoTextView.setText(cooperado.getRole());
-        suportingCooperadoTextView.setText(cooperado.getRole());
+        suportingCooperadoTextView.setText(cooperado.getDescription());
         //cooperadoImageView;
         //tratar o cooperado
     }
@@ -126,5 +114,24 @@ public class CooperadoActivity extends AppCompatActivity implements CooperadoCon
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onListFragmentInteraction(String text) {
+        presenter.changeTextOnCooperado(cooperadoId, text, TEXT_VIEW);
+
+    }
+
+
+    @Override
+    public void setClickListener(TextView view) {
+        CoopLog.d(TAG, "onClickListener: ");
+        view.setOnClickListener( v -> {
+            CoopLog.d(TAG, "onClick: " + v.getTag());
+            DialogFragment newFragment = new DialogCooperado();
+            newFragment.show(getFragmentManager(), "missiles");
+            TEXT_VIEW = v.getTag().toString();
+
+        } );
     }
 }

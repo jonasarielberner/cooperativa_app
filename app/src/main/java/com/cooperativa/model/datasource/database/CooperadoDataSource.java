@@ -5,6 +5,7 @@ import com.cooperativa.presentation.cooperado.list.CooperadoSummary;
 
 import java.util.List;
 
+import io.reactivex.Completable;
 import io.reactivex.Single;
 
 public interface CooperadoDataSource  {
@@ -14,5 +15,7 @@ public interface CooperadoDataSource  {
     Single<Cooperados> getCooperadoInformation(Long cooperadoId);
 
     Single<List<CooperadoSummary>> getCooperadosList();
+
+    Completable update(Cooperados cooperado);
 
 }

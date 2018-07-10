@@ -39,5 +39,10 @@ public class CooperadoRepositoryImpl implements CooperadoRepository {
         return localCooperadoDataSource.getCooperadosList();
     }
 
+    @Override
+    public Completable updateCooperadoInformation(Cooperados cooperado) {
+        return localCooperadoDataSource.update(cooperado);
+    }
+
 
 }

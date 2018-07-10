@@ -2,15 +2,22 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="AppTheme" parent="Theme.AppCompat">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
 
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="FragmentCooperado" parent="Theme.AppCompat">
-        <item name="android:colorSecondary" tools:targetApi="n_mr1">@color/colorPrimaryLight</item>
+
+    <style name="ListView">
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:background">@color/colorBackGround</item>
+
     </style>
+
 
     <style name="cardTitle">
         <item name="android:ellipsize">end</item>
@@ -35,6 +42,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginBottom">16dp</item>
         <item name="android:singleLine">true</item>
+        <item name="android:textColor">@android:color/black</item>
     </style>
 
 

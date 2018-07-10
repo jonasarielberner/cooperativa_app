@@ -15,6 +15,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
 
@@ -52,8 +53,8 @@ public class LocalCooperadoDataSource implements CooperadoDataSource {
     private Cooperados newCooperado() {
 
         Cooperados newCooperado = new Cooperados("Jonas",
-                "",
-                "");
+                "Ariel",
+                "Berner");
 
         return newCooperado;
     }
@@ -71,6 +72,24 @@ public class LocalCooperadoDataSource implements CooperadoDataSource {
         return cooperadosDao.loadAllCooperados()
                 .map( cooperados -> cooperadosMapper.toCooperadoSummary( cooperados ) );
     }
+
+    @Override
+    public Completable update(Cooperados cooperado) {
+        return Completable.create(emitter -> {
+            try {
+                int numUpdates = cooperadosDao.updateSynchronous(cooperado);
+                if (numUpdates == 1) {
+                    cooperadosDao.insertCooperado( cooperado );
+                    emitter.onComplete();
+                }
+
+            } catch (Exception exception) {
+                emitter.onError(exception);
+            }
+        });
+    }
+
+
 
 
 }

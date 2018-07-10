@@ -28,8 +28,10 @@ public class DialogPresenter extends BasePresenter implements DialogContract.Pre
 
     }
 
+
     @Override
     public void onUserWantsToUpdateText(String text) {
+
 
     }
 

@@ -19,5 +19,5 @@ public interface CooperadoRepository {
     Single<List<CooperadoSummary>> getCooperadosList();
 
 
-
+    Completable updateCooperadoInformation(Cooperados cooperadoId);
 }
