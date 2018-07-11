@@ -9,8 +9,8 @@
         style="@style/CenteredPane"
         android:layout_height="match_parent"
         android:elevation="1dp"
-        android:gravity="center_horizontal">
-
+        android:gravity="center_horizontal"
+        android:background="@color/colorBackGround">
         <fragment
             android:id="@+id/ticket_list_fragment"
             android:name="com.cooperativa.presentation.cooperado.list.ListCooperadoFragment"
@@ -18,5 +18,8 @@
             android:layout_height="match_parent"
             tools:layout="@layout/fragment_cooperado_list_item" />
     </LinearLayout>
+
+    <include layout="@layout/toolbar"/>
+
 
 </android.support.constraint.ConstraintLayout>

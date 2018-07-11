@@ -3,6 +3,7 @@ package com.cooperativa.db.entity;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.graphics.Bitmap;
 import android.provider.MediaStore;
 
 import java.util.Date;
@@ -27,8 +28,7 @@ public class Cooperados {
     @ColumnInfo(name = "description")
     private String description;
 
-   /* @ColumnInfo(name = "photo")
-    private MediaStore.Images.Media photo;*/
+
 
     public Cooperados(String name,
                       String role,
@@ -45,8 +45,6 @@ public class Cooperados {
     public void setId(Long id) {
         this.id = id;
     }
-
-
 
     public String getName() {
         return name;
@@ -81,7 +79,6 @@ public class Cooperados {
                 ", name='" + name + '\'' +
                 ", role='" + role + '\'' +
                 ", description='" + description + '\'' +
-
                 '}';
     }
 }

@@ -77,14 +77,16 @@
     </android.support.constraint.ConstraintLayout>
 
     <android.support.design.widget.FloatingActionButton
+        android:layout_weight="1"
         android:id="@+id/new_cooperado"
         android:layout_width="@dimen/float_action_button_size"
         android:layout_height="@dimen/float_action_button_size"
-        android:layout_margin="12dp"
+        android:layout_margin= "60dp"
         android:clickable="true"
         android:focusable="true"
-        android:src="@drawable/ic_launcher_background"
+        android:src="@drawable/ic_action_add"
         app:layout_anchor="@id/cooperado_recycler"
-        app:layout_anchorGravity="bottom|right|end" />
+        app:layout_anchorGravity="bottom|center"
+        />
 
 </android.support.design.widget.CoordinatorLayout>

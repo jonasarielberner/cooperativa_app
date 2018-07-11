@@ -11,6 +11,9 @@ import com.cooperativa.presentation.cooperado.visualization.dialog.DialogPresent
 import com.cooperativa.presentation.main.MainActivityContract;
 import com.cooperativa.presentation.main.MainPresenter;
 
+import java.text.DateFormat;
+import java.util.Locale;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -44,5 +47,13 @@ public class PresentationModule {
     @Provides
     public DialogContract.Presenter providesDialogContract (DialogPresenter presenter){
         return presenter;
+    }
+
+    @Provides
+    public DateFormat providesLongDateFormat(Locale defaultLocale) {
+        return DateFormat.getDateTimeInstance(
+                DateFormat.LONG,
+                DateFormat.LONG,
+                defaultLocale);
     }
 }

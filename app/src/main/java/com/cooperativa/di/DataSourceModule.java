@@ -9,11 +9,17 @@ import com.cooperativa.model.datasource.configuration.ConfigurationDataSource;
 import com.cooperativa.model.datasource.configuration.LocalConfigurationDataSource;
 import com.cooperativa.model.datasource.cooperado.CooperadosMapper;
 import com.cooperativa.model.datasource.database.CooperadoDataSource;
+import com.cooperativa.model.datasource.database.DateWrapper;
 import com.cooperativa.model.datasource.database.LocalCooperadoDataSource;
+import com.cooperativa.model.datasource.folder.FolderDataSource;
+import com.cooperativa.model.datasource.folder.FolderDataSourceImpl;
 import com.cooperativa.model.datasource.logging.LoggingDataSource;
 import com.cooperativa.model.datasource.logging.LoggingDataSourceImpl;
+import com.cooperativa.model.datasource.photo.PhotoDataSource;
+import com.cooperativa.model.datasource.photo.PhotoDataSourceImpl;
 import com.cooperativa.model.datasource.version.LocalVersionDataSource;
 import com.cooperativa.model.datasource.version.VersionDataSource;
+import com.cooperativa.model.datasource.video.FileWrapper;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -33,16 +39,8 @@ public class DataSourceModule {
     }
 
 
-    @Provides
-    @Singleton
-    PhotoDataSource providesPictureDataSource(FolderDataSource folderDataSource, DateWrapper dateWrapper) {
-        return new PhotoDataSourceImpl(folderDataSource, dateWrapper);
-    }
-    @Provides
-    @Singleton
-    VideoDataSource providesVideoDataSource(FolderDataSource folderDataSource, FileWrapper fileWrapper, DateWrapper dateWrapper) {
-        return new VideoDataSourceImpl(folderDataSource, fileWrapper, dateWrapper);
-    }*/
+
+   */
 
     @Provides
     @Singleton
@@ -79,6 +77,18 @@ public class DataSourceModule {
     CooperadoDataSource providesCooperadoDataSource(LocalCooperadoDataSource localCooperadoDataSource, CooperadosMapper cooperadosMapper) {
         return new LocalCooperadoDataSource( (CooperadosDao) localCooperadoDataSource, cooperadosMapper );
     }
+
+    @Provides
+    @Singleton
+    PhotoDataSource providesPictureDataSource(FolderDataSource folderDataSource, DateWrapper dateWrapper) {
+        return new PhotoDataSourceImpl(folderDataSource, dateWrapper);
+    }
+    @Provides
+    @Singleton
+    FolderDataSource providesVideoDataSource(FileWrapper fileWrapper) {
+        return new FolderDataSourceImpl(fileWrapper);
+    }
+
 
 
 }

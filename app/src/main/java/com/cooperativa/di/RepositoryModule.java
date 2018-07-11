@@ -1,11 +1,17 @@
 package com.cooperativa.di;
 
+import com.cooperativa.model.datasource.folder.FolderDataSource;
+import com.cooperativa.model.datasource.photo.PhotoDataSource;
 import com.cooperativa.model.repository.configuration.ConfigurationRepository;
 import com.cooperativa.model.repository.configuration.ConfigurationRepositoryImpl;
 import com.cooperativa.model.repository.database.CooperadoRepository;
 import com.cooperativa.model.repository.database.CooperadoRepositoryImpl;
+import com.cooperativa.model.repository.folder.FolderRepository;
+import com.cooperativa.model.repository.folder.FolderRepositoryImpl;
 import com.cooperativa.model.repository.logging.LoggingRepository;
 import com.cooperativa.model.repository.logging.LoggingRepositoryImpl;
+import com.cooperativa.model.repository.photo.PhotoRepository;
+import com.cooperativa.model.repository.photo.PhotoRepositoryImpl;
 import com.cooperativa.model.repository.version.VersionRepository;
 import com.cooperativa.model.repository.version.VersionRepositoryImpl;
 
@@ -32,10 +38,7 @@ public class RepositoryModule {
         return new AudioRecorderRepositoryImpl(audioRecorderDataSource);
     }
 
-    @Provides
-    PhotoRepository providesPictureRepository(PhotoDataSource photoDataSource) {
-        return new PhotoRepositoryImpl(photoDataSource);
-    }
+
 
     @Provides
     VideoRepository providesVideoRepository(VideoDataSource videoDataSource) {
@@ -70,5 +73,15 @@ public class RepositoryModule {
     @Singleton
     CooperadoRepository providesCooperadoRepository(CooperadoRepositoryImpl repository) {
         return repository;
+    }
+
+    @Provides
+    PhotoRepository providesPictureRepository(PhotoDataSource photoDataSource) {
+        return new PhotoRepositoryImpl(photoDataSource);
+    }
+
+    @Provides
+    FolderRepository providesFolderRepository(FolderDataSource folderDataSource) {
+        return new FolderRepositoryImpl(folderDataSource);
     }
 }
