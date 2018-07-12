@@ -1,9 +1,11 @@
 package com.cooperativa.presentation.cooperado.visualization;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.widget.ImageView;
 
+import com.cooperativa.R;
 import com.cooperativa.db.entity.Cooperados;
 import com.cooperativa.model.UseCaseCallback;
 import com.cooperativa.model.datasource.logging.CoopLog;
@@ -19,6 +21,8 @@ import javax.inject.Inject;
 
 import io.reactivex.observers.DisposableCompletableObserver;
 import io.reactivex.observers.DisposableSingleObserver;
+
+import static com.cooperativa.R.*;
 
 public class CooperadoPresenter extends BasePresenter implements CooperadoContract.Presenter {
 
@@ -185,8 +189,7 @@ public class CooperadoPresenter extends BasePresenter implements CooperadoContra
 
             @Override
             public void onSuccess(File data) {
-                CoopLog.d( TAG, "onPhotoLoad: onSuccess: " +  data.listFiles() );
-
+                CoopLog.d( TAG, "onPhotoLoad: onSuccess: " +  data.getPath());
 
                 mCurrentPhotoPath= data.getPath();
                 CoopLog.d( TAG, "onPhotoLoad: onSuccess: " + mCurrentPhotoPath );

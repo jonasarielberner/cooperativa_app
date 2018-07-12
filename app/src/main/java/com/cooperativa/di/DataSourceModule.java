@@ -81,7 +81,7 @@ public class DataSourceModule {
     @Provides
     @Singleton
     PhotoDataSource providesPictureDataSource(FolderDataSource folderDataSource, DateWrapper dateWrapper) {
-        return new PhotoDataSourceImpl(folderDataSource, dateWrapper);
+        return new PhotoDataSourceImpl(folderDataSource, dateWrapper, context );
     }
     @Provides
     @Singleton

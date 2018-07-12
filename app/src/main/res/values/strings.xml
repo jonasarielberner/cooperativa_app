@@ -14,6 +14,7 @@
     <string name="dialog_title">Set the Text</string>
     <string name="dialog_text_input">Enter your text here</string>
     <string name="picture_save_successful">Picture saved successfully</string>
+    <string name="profile_photo">profilePhoto</string>
 
 
 </resources>
